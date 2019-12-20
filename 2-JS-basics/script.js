@@ -135,3 +135,24 @@ var bmiBool = markBMI > johnBMI;
 // 4.-
 console.log("Is Mark´s BMI Higher than John´s? " + bmiBool);
 
+/*
+If - Else statements
+*/
+
+var firstName = "John";
+var civilStatus = "Single";
+if (civilStatus == "Married") {
+    console.log(firstName + " is Married");
+}
+else {
+    console.log(firstName + " will hopefully be Married soon");
+}
+
+//Using Bolleand
+var isMarried = true;
+if (isMarried) {
+    console.log(firstName + " is Married");
+}
+else {
+    console.log(firstName + " will hopefully be Married soon");
+}
