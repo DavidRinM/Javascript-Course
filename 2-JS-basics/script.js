@@ -156,3 +156,26 @@ if (isMarried) {
 else {
     console.log(firstName + " will hopefully be Married soon");
 }
+
+
+/*
+
+Boolean Logic
+
+*/
+
+var firstName = "John";
+var age = 16;
+
+if (age < 13) { 
+    console.log(firstName + " is a boy");
+}
+else if (age < 20) { //Age between 13 - 20
+    console.log(firstName + " is a teenager");
+}
+else if (age >= 20 && age < 30) {
+    console.log(firstName + " is a young man");
+}
+else { // Age > 20
+    console.log(firstName + " is a man");
+}
