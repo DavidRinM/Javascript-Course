@@ -387,3 +387,31 @@ function yearsUntilRetirement(year, firstName){
 }
 
 yearsUntilRetirement(1990, "John");
+
+/*
+Function Statements & Expressions
+*/
+
+//Function Declaration
+/* 
+    function whatDoYouDo(job, firstName){}
+*/
+//Function Expression
+var whatDoYouDo = function(job, firstName){
+    switch(job){
+        case "Teacher":
+            return firstName + " teaches kids how to code";
+        case "Driver":
+            return firstName + " drives a cab in Lisbon";
+        case "Designer":
+            return firstName + " designs beautiful websites";
+        default:
+            return firstName + " does something else";
+    }
+}
+
+console.log(whatDoYouDo("Teacher", "John")); // whatDoYouDo("Teacher", "John") -> Expression
+console.log(whatDoYouDo("Designer", "Jane"));
+console.log(whatDoYouDo("Retired", "Mark"));
+
+// function Statement /Declarations does not produce immediate results
