@@ -24,7 +24,7 @@ Variable Mutation & Type Coercion
 var firstName = 'John';
 var age = 28;
 
-console.log(firstName + ' ' + age)
+console.log(firstName + ' ' + age);
 
 var job, isMarried;
 job = 'Teacher';
@@ -41,3 +41,31 @@ alert(firstName + ' is a ' + age + ' Year old ' + job + '. Is he married? ' + is
 
 var lastName = prompt('What´s his last name?');
 console.log(firstName + ' ' + lastName);
+
+//Basic Operator
+
+var year, yearJohn, yearMark;
+year = 2018;
+yearJohn = year - 28;
+yearMark = year - 33;
+
+ageJohn = 28;
+ageMark = 33;
+
+console.log(yearJohn);
+console.log(yearMark);
+
+//Math 
+console.log(year + 2);
+console.log(year * 2);
+console.log(year/10);
+
+//Logical
+var johnOlder = ageJohn < ageMark;
+console.log(johnOlder);
+
+//Type of Operator
+console.log(typeof johnOlder);
+console.log(typeof ageJohn);
+console.log(typeof "Mark´s older than John");
+console.log(typeof x);
