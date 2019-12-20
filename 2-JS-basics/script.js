@@ -415,3 +415,35 @@ console.log(whatDoYouDo("Designer", "Jane"));
 console.log(whatDoYouDo("Retired", "Mark"));
 
 // function Statement /Declarations does not produce immediate results
+
+
+/*
+    Arrays
+*/
+
+//Initialize new Array
+var names = ["John", "Mark", "Jane"];
+var years = new Array(1990, 1969, 1948);
+
+console.log(names);
+console.log(names[2]);
+console.log(names.length);
+
+// Data mutation
+names[1] = "Ben";
+names[names.length] = "Mary";
+names[5] = "Barry"; //Array appears with empty spaces
+
+//Different Data Types
+var john = ["John", "Smith", 1990, "Teacher", false];
+john.push("Blue"); //Adds new element at the end
+john.unshift("Mr."); //Adds element at the start
+console.log(john);
+
+john.pop();//removes element at the end
+john.shift(); //removes element at the start
+john.indexOf(1990); //returns position where element is in the Array. If it doesn´t exist, returns -1
+
+var isDesigner = john.indexOf("Desginser") === -1 ? "John is not a designer" : "John IS a designer"
+
+console.log(isDesigner); 
