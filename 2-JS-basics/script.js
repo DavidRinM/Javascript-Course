@@ -263,3 +263,96 @@ else{
 
 // == Data types do no need to be de same
 // === Data typs must be the same
+
+/*
+
+    Coding Challenge 2
+John & Mike both play basketball in different teams. In the last 3 games,
+John´s team scored 89, 120 and 103 points, whiles Mike´s scored 116, 94 and 123.
+
+1.- Calculate Average score for each team.
+2.- Decide which team wins in average(highest ave) and print in console. Include average score.
+3.- Change scored to show different winner. Don´t forget there might be a draw.
+
+4.- EXTRA: Mary also plays basketball and her team scored 97, 134 and 105. Like before,
+log the average winner.
+5.- Like before, change scores to generate different winners
+*/
+
+
+// 1.-
+var jonhGame1 = 89;
+var jonhGame2 = 120;
+var jonhGame3 = 103;
+var averageJohn = (jonhGame1 + jonhGame2 + jonhGame3)/3;
+
+var mikeGame1 = 116;
+var mikeGame2 = 94;
+var mikeGame3 = 123;
+var averageMike = (mikeGame1 + mikeGame2 + mikeGame3)/3;
+
+// 2.-
+if (averageJohn>averageMike){
+    console.log("John wins with an average of: " + averageJohn);
+}
+else if (averageJohn<averageMike){
+    console.log("Mike wins with an average of: " + averageMike);
+}
+else{
+    console.log("There´s a draw");
+}
+ // 3.-
+ averageJohn = 100;
+ averageMike = 50;
+ if (averageJohn>averageMike){
+    console.log("John wins with an average of: " + averageJohn);
+}
+else if (averageJohn<averageMike){
+    console.log("Mike wins with an average of: " + averageMike);
+}
+else{
+    console.log("There´s a draw");
+}
+
+// 4.-
+var maryGame1 = 97;
+var maryGame2 = 134;
+var maryGame3 = 105;
+var averageMary = (maryGame1 + maryGame2 + maryGame3)/3;
+
+if (averageJohn>averageMike){ //John Greater than mike
+    if (averageJohn>averageMary){ // John greates
+        console.log("John wins with: "+ averageJohn);
+    }
+    else{
+        if(averageMary > averageMike){ //Mary greatest
+            console.log("Mary wins with: " + averageMary);
+        }
+    }
+}
+else{ //Mike greater than John
+    if(averageMike>averageMary){ //Mike greatest
+        console.log("Mike wins with: " + averageMike);
+    }
+    else{ // Mike worse than Mary
+        if(averageMary>averageJohn){ // Mary the greatest
+            console.log("Mary wins with: " + averageMary);
+        }
+    }
+}
+
+averageJohn = 5;
+averageMary = 60;
+averageMike = 80;
+if (averageJohn>averageMike && averageJohn>averageMary){
+    console.log("John wins with: " + averageJohn);
+}
+else if (averageMike>averageJohn && averageMike>averageMary){
+    console.log("Mike wins with: " + averageMike);
+}
+else if (averageMary>averageJohn && averageMary>averageMike){
+    console.log("Mary wins with: " + averageMary);
+}
+else{
+    console.log("Theres a draw");
+}
