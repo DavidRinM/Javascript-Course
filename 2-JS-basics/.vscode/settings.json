@@ -1,0 +1,7 @@
+{
+    "editor.fontSize": 16,
+    "css.validate": false,
+    "scss.validate": false,
+    "less.validate": false,
+    "editor.wordWrap": "on"
+}
