@@ -447,3 +447,37 @@ john.indexOf(1990); //returns position where element is in the Array. If it does
 var isDesigner = john.indexOf("Desginser") === -1 ? "John is not a designer" : "John IS a designer"
 
 console.log(isDesigner); 
+
+/*
+
+    Coding Challenge 3
+John & his family went on a holiday nd went to 3 different restaurants.
+Bills were: $124, $48 & $268.
+To tip the waiter a fair amount, John created a simple tip calculator (as a function).
+He likes to tip 20% of the bill when the bill is less than $50, 15% when it´s between 50 and 200,
+and 10% when its more than $200.
+
+In the end, John would like to have 2 arrays:
+1) Containing all three tips (one for each bill.)
+2) Containing all three final paid ammounts (bill + tip)
+*/
+
+function tipCalculator(bill){
+    var percentage;
+    if (bill<50){
+        percentage = 0.2; 
+    }
+    else if(bill>50 && bill<200){
+        percentage = 0.15;
+    }
+    else{
+        percentage = 0.1;
+    }
+    return percentage * bill;
+}
+
+var Bills = [124, 48, 268];
+var tips = [tipCalculator(bills[0]),
+            tipCalculator(bills[1]),
+            tipCalculator(bills[2])];
+var finalBill = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2],];
