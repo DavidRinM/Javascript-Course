@@ -244,3 +244,22 @@ switch(true){
         console.log(firstName + " is a man"); break;
 }
 
+/*
+Truthy and Falsy Values & Equiality Operators
+
+Falsy Values:   Undefined, null, 0, "", NaN
+Truthy Values:  Not Falsy Values
+*/
+
+var height;
+height = 23;
+
+if (height || height ==0){
+    console.log("Variable defined"); //Evaluates if varible exists
+}
+else{
+    console.log("Variable hasn´t been defined");
+}
+
+// == Data types do no need to be de same
+// === Data typs must be the same
