@@ -179,3 +179,68 @@ else if (age >= 20 && age < 30) {
 else { // Age > 20
     console.log(firstName + " is a man");
 }
+
+/*
+    Ternary Operator & Switch Statements
+*/
+
+var firstName = "John";
+var age = 16;
+
+//Ternary Operator
+age >=18 ? console.log(firstName + " drinks beer") //like if statement
+:   console.log(firstName + " drinks juice") //like else statemente
+
+var drink = age>=18 ? "beer" : "juice"; //drink = beer if age>=18, else drink= juice
+console.log(drink);
+
+//Comparing to an elif
+
+if (age >= 18){
+    var drink = "beer";
+}
+else { 
+    var drink = "juice";
+}
+
+//Switch
+var job = "Teacher";
+switch (job){
+    case "Teacher":
+    case "Instructor":
+        console.log(firstName + " teaches kids how to code"); break;
+    case "Driver":
+        console.log(firstName + " drives an uber"); break;
+    default:
+        console.log(firstName + " does something else"); break;
+}
+
+/*
+var firstName = "John";
+var age = 16;
+
+if (age < 13) { 
+    console.log(firstName + " is a boy");
+}
+else if (age < 20) { //Age between 13 - 20
+    console.log(firstName + " is a teenager");
+}
+else if (age >= 20 && age < 30) {
+    console.log(firstName + " is a young man");
+}
+else { // Age > 20
+    console.log(firstName + " is a man");
+}
+*/
+
+switch(true){
+    case age < 13:
+        console.log(firstName + " is a boy"); break;
+    case age <20:
+        console.log(firstName + " is a teenager"); break;
+    case age>=20 && age<30:
+        console.log(firstName + " is a young man"); break;
+    default:
+        console.log(firstName + " is a man"); break;
+}
+
