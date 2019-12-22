@@ -572,3 +572,43 @@ BMI = mass/height^2
  else{
      console.log("They both have the same BMI");
  }
+
+ /**
+    Loops and Iteration 
+*/
+
+//for loop
+for(var i=0; i<10; i++){ 
+    console.log(i+1);
+}
+for(var i=1; i<=20; i+=2){ // i+=2
+    console.log(i);
+}
+
+var john = ["John", "Smith", 1990, "Teacher", false];
+for(i=0; i < john.length; i++){
+    console.log(john[i]);
+}
+
+//while loop
+var j=0;
+while(j<john.length){
+    console.log(john[j]);
+    j++;
+}
+
+// Continue & break statements
+for(i=0; i < john.length; i++){
+    if(typeof john[i] !== 'string') continue; // If john[i] is strictly different to a string, skip this iteration
+    console.log(john[i]);
+}
+
+for(i=0; i < john.length; i++){
+    if(typeof john[i] !== 'string') break;// If john[i] is strictly different to a string, break loop
+    console.log(john[i]);
+}
+
+//Loop backwards
+for (i=john.length-1; i>=0; i--){
+    console.log(john[i]);
+}
