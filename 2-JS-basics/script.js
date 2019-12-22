@@ -481,3 +481,36 @@ var tips = [tipCalculator(bills[0]),
             tipCalculator(bills[1]),
             tipCalculator(bills[2])];
 var finalBill = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2],];
+
+/**
+    Objects & Properties
+ */
+
+ var john = {
+     firstName: "John",
+     lastName: "Smith",
+     birthYear: 1990,
+     family: ["Jane", "Mark", "Bob", "Emily"],
+     job: "Teacher",
+     isMarried: false
+ };
+ 
+ console.log(john);
+ console.log(john.firstName);
+ console.log(john["lastName"]);
+ 
+ var x = "birthYear";
+ console.log(john[x]);
+
+ john.job = "Desginer";
+ john["isMarried"] = true;
+ console.log(john);
+
+ //Other wayt to create Objects
+ var jane = new Object();
+ jane.Name = "Jane";
+ jane.birthYear = 1969;
+ jane["lastName"] = "Smith";
+ console.log(jane);
+
+ 
