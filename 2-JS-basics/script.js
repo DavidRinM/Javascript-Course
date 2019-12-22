@@ -476,7 +476,7 @@ function tipCalculator(bill){
     return percentage * bill;
 }
 
-var Bills = [124, 48, 268];
+var bills = [124, 48, 268];
 var tips = [tipCalculator(bills[0]),
             tipCalculator(bills[1]),
             tipCalculator(bills[2])];
@@ -530,3 +530,45 @@ var john = {
 
 console.log(john.calcAge()); //Using Method by passing birthyear
 console.log(john);
+
+/*
+    Coding Challenge 4
+Let´s remember the first coding challenge where Mark & John compared their BMI´s.
+Let´s now implement the same functionality with Objects & Methods.
+
+1.-For each of them, create an object with properties for their full name, mass & height.
+2.-Add a method to each object to calculate the BMI. Save the BMI to the object and also return it.
+3.-In the end, log to the console who has the highest BMI, together with the full name & BMI.
+Do not forget the might have the same BMI.
+
+BMI = mass/height^2
+ */
+ var john = {
+     fullName: "John Smith",
+     mass: prompt("John´s Mass: "),
+     height: prompt("John´s Height: "),
+     calcBMI: function(){
+        this.bmi = this.mass/(this.height * this.height);
+        return this.bmi;
+     }
+ }
+
+ var mark ={
+     fullName: "Mark Smith",
+     mass: prompt("Mark´s Mass: "),
+     height: prompt("Mark´s Height: "),
+     calcBMI: function(){
+        this.bmi = this.mass/(this.height * this.height);
+        return this.bmi;
+     }
+ }
+
+ if (john.calcBMI() > mark.calcBMI()){ //we call both of the methods and compare them
+     console.log(john.fullName + " has the highest BMI wtih " + john["bmi"]);
+ }
+ else if (john.bmi < mark.bmi){ //BMI values already exist
+    console.log(mark.fullName + " has the highest BMI wtih " + mark["bmi"]);
+ }
+ else{
+     console.log("They both have the same BMI");
+ }
