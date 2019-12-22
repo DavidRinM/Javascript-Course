@@ -513,4 +513,20 @@ var finalBill = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2],];
  jane["lastName"] = "Smith";
  console.log(jane);
 
- 
+ /*
+    Objects & Methods
+*/
+var john = {
+    firstName: "John",
+    lastName: "Smith",
+    birthYear: 1990,
+    family: ["Jane", "Mark", "Bob", "Emily"],
+    job: "Teacher",
+    isMarried: false,
+    calcAge: function(){ //New method for object John
+        this.age = 2019 - this.birthYear; //Using John´s birth Year
+    }
+};
+
+console.log(john.calcAge()); //Using Method by passing birthyear
+console.log(john);
