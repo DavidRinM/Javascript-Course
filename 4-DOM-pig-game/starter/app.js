@@ -12,11 +12,7 @@ GAME RULES:
 //DOM = Document Object Model -> HTML Interacting with Scripts
 
 var scores, roundScore, activePlayer;
-
-scores = [0,0];
-roundScore = 0;
-activePlayer = 0; //0 = Player 1, 1 = player 2 
-
+init();
 //document.querySelector("#current-" + activePlayer).textContent = dice; // # is for selecting id´s
 //document.querySelector("#current-" + activePlayer).innerHTML = "<em>" + dice + "</em>";
 
@@ -24,8 +20,6 @@ activePlayer = 0; //0 = Player 1, 1 = player 2
 //var x = document.querySelector("#score-0").textContent; //we read the player 1 score into the x variable
 //console.log(x);
 
-// We use a dot . when we refer to classes
-document.querySelector(".dice").style.display = "none"; // We hide the dice at the beginning using css-style code
 
 /**
  * Event: Notifications that are sent to notify the code that something happened on the webpage
@@ -44,12 +38,6 @@ btn();
 document.querySelector(".btn-roll").addEventListener("click", btn);//We do not use () in btn cause it´s acallback function
 
 */
-
-document.getElementById("score-0").textContent = "0";
-document.getElementById("score-1").textContent = "0";
-
-document.getElementById("current-0").textContent = "0";
-document.getElementById("current-1").textContent = "0";
 
 // Anonymous Functions. Can´t use outside
 document.querySelector(".btn-roll").addEventListener("click", function(){
@@ -110,4 +98,33 @@ function nextPlayer() {
         document.querySelector(".player-1-panel").classList.toggle("active");
 
         document.querySelector(".dice").style.display = "none"; //Hide the dice every time we change the Player
+}
+
+document.querySelector(".btn-new").addEventListener("click", init);
+function init(){
+    scores = [0,0];
+    roundScore = 0;
+    activePlayer = 0; //0 = Player 1, 1 = player 2 
+
+    // We use a dot . when we refer to classes
+    document.querySelector(".dice").style.display = "none"; // We hide the dice at the beginning using css-style code
+    
+    document.getElementById("score-0").textContent = "0";
+    document.getElementById("score-1").textContent = "0";
+
+    document.getElementById("current-0").textContent = "0";
+    document.getElementById("current-1").textContent = "0";
+
+    document.getElementById("name-0").textContent = "Player 1";
+    document.getElementById("name-1").textContent = "Player 2";
+    
+    document.querySelector(".player-0-panel").classList.remove("winner");
+    document.querySelector(".player-1-panel").classList.remove("winner");
+
+    document.querySelector(".player-0-panel").classList.remove("active");
+    document.querySelector(".player-1-panel").classList.remove("active");
+
+    document.querySelector(".player-0-panel").classList.add("active");
+
+
 }
