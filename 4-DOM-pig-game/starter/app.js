@@ -63,4 +63,27 @@ document.querySelector(".btn-roll").addEventListener("click", function(){
     
 
     //3.- Update the round score IF the rolled numer was NOT a 1
+
+    if (dice !== 1){
+        // Add score
+        roundScore += dice; // roundScore = roundScore + dice
+        document.querySelector("#current-" + activePlayer).textContent = roundScore;
+    }
+    else{
+        // Next Player
+        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0; //if (avtivePlayer=0) -> activePlayer = 1
+        roundScore = 0;
+
+        document.getElementById("current-0").textContent = '0'; //We equal to 0 the current score if dice!=1
+        document.getElementById("current-1").textContent = '0';
+        
+        document.querySelector(".player-0-panel").classList.toggle("active"); //We toggle the player selector 
+        document.querySelector(".player-1-panel").classList.toggle("active");
+
+        document.querySelector(".dice").style.display = "none"; //Hide the dice every time we change the Player
+
+
+        //document.querySelector(".player-0-panel").classList.remove("active"):
+        //document.querySelector(".player-1-panel").classList.add("active");
+    }
 });
