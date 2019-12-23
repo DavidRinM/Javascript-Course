@@ -11,19 +11,56 @@ GAME RULES:
 
 //DOM = Document Object Model -> HTML Interacting with Scripts
 
-var scores, roundScore, activePlayer, dice;
+var scores, roundScore, activePlayer;
 
 scores = [0,0];
 roundScore = 0;
-activePlayer = 0; //0 = Player 1, 1 = player 2
+activePlayer = 0; //0 = Player 1, 1 = player 2 
 
-dice = Math.floor(Math.random() * 6) + 1; //Creates random number between 1-6 & rounds it with floor
-
-document.querySelector("#current-" + activePlayer).textContent = dice; // # is for selecting id´s
+//document.querySelector("#current-" + activePlayer).textContent = dice; // # is for selecting id´s
 //document.querySelector("#current-" + activePlayer).innerHTML = "<em>" + dice + "</em>";
 
 
-var x = document.querySelector("#score-0").textContent; //we read the player 1 score into the x variable
-console.log(x);
+//var x = document.querySelector("#score-0").textContent; //we read the player 1 score into the x variable
+//console.log(x);
 
+// We use a dot . when we refer to classes
 document.querySelector(".dice").style.display = "none"; // We hide the dice at the beginning using css-style code
+
+/**
+ * Event: Notifications that are sent to notify the code that something happened on the webpage
+    -> Clickin a button, resize window, scroll down, pressing a key
+
+ * Event Listener: Function that performs an action based on a certain event. Waits for a specific event to happen
+
+ ********************
+ 
+function btn(){
+    // Do something here
+}
+
+btn();
+
+document.querySelector(".btn-roll").addEventListener("click", btn);//We do not use () in btn cause it´s acallback function
+
+*/
+
+document.getElementById("score-0").textContent = "0";
+document.getElementById("score-1").textContent = "0";
+
+document.getElementById("current-0").textContent = "0";
+document.getElementById("current-1").textContent = "0";
+
+// Anonymous Functions. Can´t use outside
+document.querySelector(".btn-roll").addEventListener("click", function(){
+    //1.- Random Number
+    var dice = Math.floor(Math.random() * 6) + 1; //Creates random number between 1-6 & rounds it with floor
+
+    //2.- Display the score
+    var diceDOM = document.querySelector(".dice");
+    diceDOM.style.display = "block";
+    diceDOM.src = "dice-" + dice + ".png";
+    
+
+    //3.- Update the round score IF the rolled numer was NOT a 1
+});
