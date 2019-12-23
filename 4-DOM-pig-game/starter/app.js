@@ -71,7 +71,36 @@ document.querySelector(".btn-roll").addEventListener("click", function(){
     }
     else{
         // Next Player
-        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0; //if (avtivePlayer=0) -> activePlayer = 1
+        nextPlayer();
+        //document.querySelector(".player-0-panel").classList.remove("active"):
+        //document.querySelector(".player-1-panel").classList.add("active");
+    }
+});
+
+//Now we want to hold the score
+
+document.querySelector(".btn-hold").addEventListener("click", function(){
+    // Add current score to Global score
+    scores[activePlayer] += roundScore; //score[activePlayer] can be score[0] or score[1]
+
+    //Update the UI
+    document.querySelector("#score-" + activePlayer).textContent = scores[activePlayer];
+
+    //Check if player won the game
+    if (scores[activePlayer]>= 10){
+        document.querySelector("#name-" + activePlayer).textContent = "Winner!"; //If winner, change the name
+        document.querySelector(".dice").style.display = "none"; // we remove the dice
+        document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner"); //We add the winner class 
+        document.querySelector(".player-" + activePlayer + "-panel").classList.remove("active"); //remove the active player
+    }
+    else{
+        // After clicking Hold, we change to the next player
+        nextPlayer();
+    }
+});
+
+function nextPlayer() {
+    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0; //if (avtivePlayer=0) -> activePlayer = 1
         roundScore = 0;
 
         document.getElementById("current-0").textContent = '0'; //We equal to 0 the current score if dice!=1
@@ -81,9 +110,4 @@ document.querySelector(".btn-roll").addEventListener("click", function(){
         document.querySelector(".player-1-panel").classList.toggle("active");
 
         document.querySelector(".dice").style.display = "none"; //Hide the dice every time we change the Player
-
-
-        //document.querySelector(".player-0-panel").classList.remove("active"):
-        //document.querySelector(".player-1-panel").classList.add("active");
-    }
-});
+}
