@@ -11,8 +11,6 @@ GAME RULES:
 
 //DOM = Document Object Model -> HTML Interacting with Scripts
 
-var scores, roundScore, activePlayer, gamePlaying;
-init();
 //document.querySelector("#current-" + activePlayer).textContent = dice; // # is for selecting id´s
 //document.querySelector("#current-" + activePlayer).innerHTML = "<em>" + dice + "</em>";
 
@@ -35,6 +33,10 @@ function btn(){
 btn();
 document.querySelector(".btn-roll").addEventListener("click", btn);//We do not use () in btn cause it´s acallback function
 */
+
+
+var scores, roundScore, activePlayer, gamePlaying;
+init();
 // Anonymous Functions. Can´t use outside
 document.querySelector(".btn-roll").addEventListener("click", function(){
     if(gamePlaying){
@@ -127,6 +129,6 @@ function init(){
     document.querySelector(".player-1-panel").classList.remove("active");
 
     document.querySelector(".player-0-panel").classList.add("active");
-
-
 }
+
+
