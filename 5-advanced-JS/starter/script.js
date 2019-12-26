@@ -88,3 +88,42 @@ change(age, obj);
 
 console.log(age); //Primitive values stays as 27
 console.log(obj.city); //Object value changes
+
+
+
+// *******  First Class Functions: Passing functions as Arguments
+
+var years = [1990, 1965, 1937, 2005, 1998];
+
+function arrayCalc(arr, fn){
+    var arrRes = [];
+    for(var i=0; i < arr.length; i++){
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes;
+}
+
+function calculateAge(el){ //el = element
+    return 2016 - el;
+}
+
+function isFullAge(el){
+    return el >=18; //Return TRUE if el si >= 18
+}
+
+function maxHeartRate(el){
+    if (el>=18 && el<=81){
+        return Math.round(206.9 - (0.67 * el)); //el = age
+    }
+    else{
+        return -1;
+    }
+}
+
+var ages = arrayCalc(years, calculateAge);
+var fullAges = arrayCalc(ages, isFullAge);
+var rates = arrayCalc(ages, maxHeartRate);
+
+console.log(ages);
+console.log(fullAges);
+console.log(rates);
