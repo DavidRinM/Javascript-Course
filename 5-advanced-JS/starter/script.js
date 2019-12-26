@@ -158,3 +158,32 @@ designerQuestion("Jane");
 designerQuestion("Mark");
 
 interviewQuestion("Teacher")("Mike");
+
+// ***************      IIFE
+/*
+function game(){
+    var score = Math.random() * 10; //Number between 0-9
+    console.log(score >= 5);
+}
+game();
+*/
+(
+    function(){
+        var score = Math.random() * 10; //Number between 0-9
+        console.log(score >= 5);
+    }
+)();
+
+console.log(score);
+
+
+(
+    function(gooLuck){
+        var score = Math.random() * 10; //Number between 0-9
+        console.log(score >= 5 - gooLuck);
+    }
+)(5);
+
+/**
+        IIFE functions create data privacy and local variables
+*/
