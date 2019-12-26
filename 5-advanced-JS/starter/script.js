@@ -248,3 +248,64 @@ function interviewQuestion(job){
 }
 
 interviewQuestion("Teacher")("John");
+
+/**
+        Bind, Call & Apply Methods
+*/
+
+var john = {
+    name: "John",
+    age: 26,
+    job: "Teacher",
+    presentation: function(style, timeOfDay){
+        if(style === "Formal"){
+            console.log("Good " + timeOfDay + " Ladies and Gentlemen. I´m " + this.name + ", I´m a " + this.job + " and I´m " + this.age);
+        }
+        else if(style === "Friendly"){
+            console.log("Hey, what´s up. I´m " + this.name + " Have a nice "+ timeOfDay);
+        }
+    }
+};
+
+var emily= {
+    name: "Emily",
+    age: 35,
+    job: "Designer"
+};
+
+john.presentation("Formal", "Morning");
+
+john.presentation.call(emily, "Friendly", "Afternoon"); // we use John´s method but with Emily information
+
+// john.presentation.apply(emily, ["Friendly", "Afternoon"]); not gonna work, method doesn´t expect an array
+
+var johnFriendly = john.presentation.bind(john, "Friendly"); //Bind returns a function
+
+johnFriendly("morning");
+johnFriendly("Night");
+
+var emilyFormal = john.presentation.bind(emily, "Formal");
+emilyFormal("Afternoon");
+
+var years = [1990, 1965, 1937, 2005, 1998];
+
+function arrayCalc(arr, fn){
+    var arrRes = [];
+    for(var i=0; i < arr.length; i++){
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes;
+}
+
+function calculateAge(el){ //el = element
+    return 2016 - el;
+}
+
+function isFullAge(limit, el){
+    return el >= limit; //Return TRUE if el si >= 18
+}
+
+var ages = arrayCalc(years, calculateAge);
+var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20)); //use bind to enable two parameters
+console.log(ages);
+console.log(fullJapan);
