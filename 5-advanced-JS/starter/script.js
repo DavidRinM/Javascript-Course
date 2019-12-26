@@ -138,7 +138,7 @@ function interviewQuestion(job){
     }
     else if (job === "Teacher"){
         return function(name){
-            console.log("What subject do you teach, " + namne);
+            console.log("What subject do you teach, " + name);
         }
     }
     else{
@@ -174,7 +174,7 @@ game();
     }
 )();
 
-console.log(score);
+//console.log(score);
 
 
 (
@@ -187,3 +187,64 @@ console.log(score);
 /**
         IIFE functions create data privacy and local variables
 */
+
+
+/*
+        CLOSURES
+*/
+
+function retirement(retirementAge){
+    var a = " years left until retirement";
+    return function(yearofBirth){
+        var age = 2019 -yearofBirth;
+        console.log((retirementAge - age) + a);
+    }
+}
+
+var retirementUS = retirement(66);
+var retirementGermany = retirement(65);
+var retirementIceland = retirement(67);
+
+retirementGermany(1990);
+retirementUS(1990);
+retirementIceland(1990);
+//retirement(66)(1990);
+
+
+/*
+function interviewQuestion(job){
+    if (job ==="Designer"){
+        return function (name){
+            console.log(name + ", can you please what UX design is?");
+        }
+    }
+    else if (job === "Teacher"){
+        return function(name){
+            console.log("What subject do you teach, " + name);
+        }
+    }
+    else{
+        return function(name) {
+            console.log("Hello " + name + " What do you do?");
+        }
+    }
+}
+
+                Rewriting using CLOSURES
+*/
+
+function interviewQuestion(job){
+    return function(name){
+        if (job ==="Designer"){
+            console.log(name + ", can you please what UX design is?");
+        }
+        else if (job === "Teacher"){
+            console.log("What subject do you teach, " + name);
+        }
+        else{
+            console.log("Hello " + name + " What do you do?");
+        }
+    }
+}
+
+interviewQuestion("Teacher")("John");
