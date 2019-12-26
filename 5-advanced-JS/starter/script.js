@@ -127,3 +127,34 @@ var rates = arrayCalc(ages, maxHeartRate);
 console.log(ages);
 console.log(fullAges);
 console.log(rates);
+
+//*********** Functions returning Functions
+
+function interviewQuestion(job){
+    if (job ==="Designer"){
+        return function (name){
+            console.log(name + ", can you please what UX design is?");
+        }
+    }
+    else if (job === "Teacher"){
+        return function(name){
+            console.log("What subject do you teach, " + namne);
+        }
+    }
+    else{
+        return function(name) {
+            console.log("Hello " + name + " What do you do?");
+        }
+    }
+}
+
+var teacherQuestion = interviewQuestion("Teacher");
+var designerQuestion = interviewQuestion("Designer");
+
+teacherQuestion("John");
+
+designerQuestion("John");
+designerQuestion("Jane");
+designerQuestion("Mark");
+
+interviewQuestion("Teacher")("Mike");
