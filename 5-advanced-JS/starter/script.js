@@ -309,3 +309,139 @@ var ages = arrayCalc(years, calculateAge);
 var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20)); //use bind to enable two parameters
 console.log(ages);
 console.log(fullJapan);
+
+/**
+
+    CODING CHALLENGE 7
+Quiz Game in the console.
+
+1.-Build a function constructor called Question to describe a question.
+    A question should include:
+    a) Question Itself.
+    b) The answers from which the player can choose the correct one (array, object, etc)
+    c) Correct answer (Use a number)
+2.-Create a couple of questions using the constructor.
+3.-Store them all inside an array.
+4.-Select one random question and log it into the console, together with the possible answers
+(each question should have a number) HINT: write a method for he question object for this task
+5.-Use Prompt function to ask the user for the correct answer. The user should input the number of the correct answer
+6.-Check if the answer is correct and print to the console wether  the answer is correct or not
+HINT: write another method for this.
+7.-Suppose this code would be a plug in for another programmers to use in their core. So make sure that all your code
+is private and doesn´t interphere with other programmers code
+
+----------- Expert Level. --------------
+8.-After you display the result, display the next random question, so that the game never ends
+HINT: write a function for this and call it right after displaying the result.
+9.-Be careful: After task 8, game literally never ends. Include the option to quit if the user writes exit
+instead of the answer. In this case, DON´T call the function from task 8
+10.-Track user´s score to make the game more fn. So each time the answer´s correct, add 1 point to the score
+HINT: Use the power of closures
+11.-Display the score in the console, Use another method for this
+
+(function() {
+    function Question(question, answers, correctAnswer) {
+        this.question = question;
+        this.answers = answers;
+        this.correctAnswer = correctAnswer;
+    }
+
+    Question.prototype.displayQuestion = function(){
+        console.log(this.question);
+        for(var i = 0; i < this.answers.length; i++){
+            console.log(i +": " + this.answers[i]);
+        }
+    }
+
+    Question.prototype.checkAnswer = function (answer){
+        if(answer === this.correctAnswer){
+            console.log("Correct Answer!!");
+        }
+        else{
+            console.log("Incorrect !! :(");
+        }
+    }
+
+    var question1 = new Question("Is Js the best programming language?", ["Yes", "No"], 0); //Using position 0 of the array
+    var question2 = new Question("Do you like programming?", ["Yes", "No"], 0);
+    var question3 = new Question("Name of the Course´s teacher?", ["John", "Michael", "Jonas"], 2);
+
+    var totalQuestions = [question1, question2, question3];
+
+    var n = Math.floor(Math.random() * totalQuestions.length); //Will give a number between 0-2
+
+    totalQuestions[n].displayQuestion();
+
+    var answer = parseInt(prompt("Select the correct answer: "));
+
+    totalQuestions[n].checkAnswer(answer);
+    }
+)();
+*/
+
+(function() {
+    function Question(question, answers, correctAnswer) {
+        this.question = question;
+        this.answers = answers;
+        this.correctAnswer = correctAnswer;
+    }
+
+    Question.prototype.displayQuestion = function(){
+        console.log(this.question);
+        for(var i = 0; i < this.answers.length; i++){
+            console.log(i +": " + this.answers[i]);
+        }
+    }
+
+    Question.prototype.checkAnswer = function (answer, callback){
+        var sc;
+        if(answer === this.correctAnswer){
+            console.log("Correct Answer!!");
+            sc = callback(true); //Score returns something, we equal to something
+        }
+        else{
+            console.log("Incorrect !! :(");
+            sc = callback(false);
+        }
+        this.displayScore(sc);
+    }
+
+    Question.prototype.displayScore = function(score){
+        console.log("Current score is: " + score);
+        console.log("---------------------");
+    }
+
+    function score (){
+        var score = 0;
+        return function (correct){
+            if (correct){// If answer´s correct
+                score++;
+            }
+            return score;
+        }
+    }
+
+    var question1 = new Question("Is Js the best programming language?", ["Yes", "No"], 0); //Using position 0 of the array
+    var question2 = new Question("Do you like programming?", ["Yes", "No"], 0);
+    var question3 = new Question("Name of the Course´s teacher?", ["John", "Michael", "Jonas"], 2);
+    
+    var totalQuestions = [question1, question2, question3];
+
+    var keepscore = score();
+
+    function nextQuestion() {
+        var n = Math.floor(Math.random() * totalQuestions.length); //Will give a number between 0-2
+    
+        totalQuestions[n].displayQuestion();
+    
+        var answer = prompt("Select the correct answer: ");
+
+        if(answer !== "exit"){
+            totalQuestions[n].checkAnswer(parseInt(answer), keepscore);
+            nextQuestion(); 
+        }
+    }
+
+    nextQuestion();
+}
+)();
