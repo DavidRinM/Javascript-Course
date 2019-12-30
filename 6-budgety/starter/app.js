@@ -38,6 +38,30 @@ var controller = (function(budgetCtrl, uiCtrl){ //We can pass arguments to modul
 //BUDGET CONTROLLER
 var budgetController = (function (){ /* Module Pattern using  IIFE´s*/
 
+    var Expense = function(id, description, value){
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
+
+    var Income = function(id, description, value){
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
+
+
+    var data = {
+        allItems: {
+            exp: [],
+            inc : []
+        },
+        totals: {
+            exp : 0,
+            inc : 0
+        }
+    }
+
 })();
 
 
@@ -88,7 +112,7 @@ var controller = (function(budgetCtrl, uiCtrl){ //We can pass arguments to modul
         
         //1.-Get the filled input data
         var input = uiCtrl.getInput();
-        
+
         //2.-Add the item to the budget controller
         //3.-Add the item to the UI
         //4.-Calculate the budget
