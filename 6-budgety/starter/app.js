@@ -72,23 +72,36 @@ var uiController = (function(){
 
 // GOBAL APP CONTROLLER
 var controller = (function(budgetCtrl, uiCtrl){ //We can pass arguments to modules}}
-    
-    var DOM = uiCtrl.getDOMstrings();
+
+    var setupEventListeners = function(){
+
+        var DOM = uiCtrl.getDOMstrings();
+        document.querySelector(DOM.inputButton).addEventListener("click", ctrlAddItem);
+        document.addEventListener("keypress", function(event){ //We want to enable the user to use the enter button
+            if(event.keyCode === 13 || event.which === 13){ //We specify the enter keycode (button id)
+                ctrlAddItem();
+            }
+        });
+    };
+
     var ctrlAddItem = function(){
         
         //1.-Get the filled input data
         var input = uiCtrl.getInput();
-        console.log(input);
+        
         //2.-Add the item to the budget controller
         //3.-Add the item to the UI
         //4.-Calculate the budget
         //5.-Display the budget on the UI
     };
 
-    document.querySelector(DOM.inputButton).addEventListener("click", ctrlAddItem);
-    document.addEventListener("keypress", function(event){ //We want to enable the user tu use the enter button
-        if(event.keyCode === 13 || event.which === 13){ //We specify the enter keycode
-            ctrlAddItem();
+    return {
+        init: function(){
+            console.log("Application has started");
+            setupEventListeners();
         }
-    });
+    };
+
 })(budgetController, uiController); // Inside the function they have different names
+
+controller.init();
