@@ -144,11 +144,28 @@ var uiController = (function(){
             newHtml = newHtml.replace("%value%", object.value);
 
             //Insert the HTML into the DOM
-
+                                //Element = Income / Expense List
             document.querySelector(element).insertAdjacentHTML("beforeend", newHtml);
                                                                //Position, string to insert
 
 
+        },
+
+        clearFields: function(){
+            var fields, fieldsArr;
+
+                            //returns a list
+            fields = document.querySelectorAll(DOMstrings.inputDescription + ", " + DOMstrings.inputValue);
+
+            //We need to convert the list into an array using slice method (call method)
+            fieldsArr = Array.prototype.slice.call(fields); //Array function constructor. It wil return an array
+
+            //We loop through the array to clean the input
+            fieldsArr.forEach(function(current, index, array){ //current element (Input Desciption/Value)
+                current.value = "";
+            });
+
+            fieldsArr[0].focus();//We return to the first input box
         },
 
         getDOMstrings: function(){
@@ -189,8 +206,11 @@ var controller = (function(budgetCtrl, uiCtrl){ //We can pass arguments to modul
         uiCtrl.addListItem(newItem, input.type);
                          //Object, type
 
-        //4.-Calculate the budget
-        //5.-Display the budget on the UI
+        //4.-Clear the Fields
+        uiCtrl.clearFields();
+
+        //5.-Calculate the budget
+        //6.-Display the budget on the UI
     };
 
     return {
