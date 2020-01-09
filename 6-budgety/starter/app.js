@@ -59,8 +59,20 @@ var budgetController = (function (){ /* Module Pattern using  IIFE´s*/
         totals: {
             exp : 0,
             inc : 0
-        }
-    }
+        },
+        budget: 0,
+        percentage: -1
+    };
+
+    var calculateTotal = function(type){
+        var sum = 0;
+
+        data.allItems[type].forEach(function(current){ //Current element in the array
+            sum += current.value;
+        });
+
+        data.totals[type] = sum
+    };
 
     return{
         addItem: function(type, desc, val){ //Type, description & value
@@ -90,6 +102,35 @@ var budgetController = (function (){ /* Module Pattern using  IIFE´s*/
             //return the new Element
             return newItem;
 
+        },
+
+        calculateBudget: function(){
+
+            //Calculate Total Income & Expenses
+            calculateTotal("exp");
+            calculateTotal("inc");
+
+            //Calculate the Budget: Income - Expenses
+            data.budget = data.totals.inc - data.totals.exp;
+
+            //Calculate the Percentage of Income that we spent
+            if(data.totals.inc > 0){
+                data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
+            }
+            else{
+                data,percentage = -1; //Doesn´t exist
+            }
+
+
+        },
+
+        getBudget: function(){
+            return{
+                budget: data.budget,
+                totalInc: data.totals.inc,
+                totalExp: data.totals.exp,
+                percentage: data.percentage
+            };
         },
 
         testing: function(){
@@ -218,12 +259,17 @@ var controller = (function(budgetCtrl, uiCtrl){ //We can pass arguments to modul
     };
 
     var updateBudget = function(){
-       
+        
+        var budget;
         //6.-Calculate the budget
+        budgetCtrl.calculateBudget();
 
         //7.-Return the Budget
+        budget = budgetCtrl.getBudget();
 
         //8.-Display the budget on the UI
+        console.log(budget);
+
 
     };
 
