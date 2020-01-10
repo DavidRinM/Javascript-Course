@@ -205,7 +205,8 @@ var uiController = (function(){
         incomeLabel: ".budget__income--value",
         expensesLabel: ".budget__expenses--value",
         percentageLabel: ".budget__expenses--percentage",
-        container: ".container"
+        container: ".container",
+        expensesPercentageLabel: ".item__percentage"
     };
 
     //Function to read input data
@@ -283,6 +284,28 @@ var uiController = (function(){
                 document.querySelector(DOMstrings.percentageLabel).textContent = "---";
             }
 
+        },
+
+        displayPercentages: function(percentages){
+
+            var fields = document.querySelectorAll(DOMstrings.expensesPercentageLabel); //Node List
+
+            //For Each function for node lists
+            var nodeListForEach = function(list, callback){ //Node list & callback function
+                for (var i = 0; i<list.length; i++){
+                    callback(list[i], i);
+                }
+            };
+
+            nodeListForEach(fields, function(current, index){
+
+                if(percentages[index] > 0){
+                    current.textContent = percentages[index] + "%";
+                }
+                else{
+                    current.textContent = "---";
+                }
+            });
         },
 
         getDOMstrings: function(){
@@ -393,7 +416,7 @@ var controller = (function(budgetCtrl, uiCtrl){ //We can pass arguments to modul
         var percentages = budgetCtrl.getPercentages();
 
         //Update the UI
-        console.log(percentages);
+        uiCtrl.displayPercentages(percentages);
 
     };
 
