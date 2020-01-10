@@ -212,6 +212,12 @@ var uiController = (function(){
 
         },
 
+        deleteListItem: function(selectorID){
+
+            var element = document.getElementById(selectorID);
+            element.parentNode.removeChild(element);
+        },
+
         clearFields: function(){
             var fields, fieldsArr;
 
@@ -314,8 +320,10 @@ var controller = (function(budgetCtrl, uiCtrl){ //We can pass arguments to modul
             budgetCtrl.deleteItem(type, ID);
 
             // 2.- Delete item from UI
+            uiCtrl.deleteListItem(itemID);
 
             // 3.- Upodate & display new budget
+            updateBudget();
         }
     };
 
