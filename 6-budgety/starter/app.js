@@ -297,6 +297,10 @@ var controller = (function(budgetCtrl, uiCtrl){ //We can pass arguments to modul
 
             //5.-Calculate & update BUdget
             updateBudget();
+
+            //6.- Calculate & Update Percentages
+            updatePercentages();
+
         }
 
     };
@@ -324,6 +328,9 @@ var controller = (function(budgetCtrl, uiCtrl){ //We can pass arguments to modul
 
             // 3.- Upodate & display new budget
             updateBudget();
+
+            // 4.- Calculate & Update Percentages
+            updatePercentages();
         }
     };
 
@@ -340,6 +347,17 @@ var controller = (function(budgetCtrl, uiCtrl){ //We can pass arguments to modul
         uiCtrl.displayBudget(budget);
 
 
+    };
+
+    var updatePercentages = function(){
+
+        // Calculate percentages
+
+
+        //Read percentages from budget controller
+
+
+        //Update the UI
     };
 
     return {
