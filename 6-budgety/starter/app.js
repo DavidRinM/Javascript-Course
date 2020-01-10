@@ -104,6 +104,21 @@ var budgetController = (function (){ /* Module Pattern using  IIFE´s*/
 
         },
 
+        deleteItem: function(type, id){
+
+            var ids, index;
+            ids = data.allItems[type].map(function(current){ //map returns an array. Current object in th array
+                return current.id; //Ids in the array. ids = [1,2,5,6]
+            });
+
+            index = ids.indexOf(id); //Returns the index number of the element we eant to erase
+
+            if(index !== -1){ //If element exists, we delete
+                data.allItems[type].splice(index, 1); //Position of element & delete 1 item
+            }
+
+        },
+
         calculateBudget: function(){
 
             //Calculate Total Income & Expenses
@@ -293,9 +308,10 @@ var controller = (function(budgetCtrl, uiCtrl){ //We can pass arguments to modul
             // inc-0
             splitID = itemID.split("-");
             type = splitID[0];
-            ID = splitID[1];
+            ID = parseInt(splitID[1]);
 
             // 1.- Delete item from data structure
+            budgetCtrl.deleteItem(type, ID);
 
             // 2.- Delete item from UI
 
