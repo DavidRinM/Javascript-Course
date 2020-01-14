@@ -1,3 +1,4 @@
+/*
 // Let & Const
 
 // ES5 code
@@ -44,3 +45,22 @@ for (let i = 0; i < 5; i++){ // block scope variables
 }
 
 console.log(i); // Will print 23
+
+*/
+
+// Blocks & IIFE´s
+
+// ES6
+{
+    const a = 1;
+    let b = 2;
+}
+
+console.log(a + b); // Data privacy
+
+// IIFE in ES5
+(function(){
+    var c = 3;
+})();
+
+console.log(c);
