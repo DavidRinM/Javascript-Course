@@ -46,7 +46,6 @@ for (let i = 0; i < 5; i++){ // block scope variables
 
 console.log(i); // Will print 23
 
-*/
 
 // Blocks & IIFE´s
 
@@ -64,3 +63,33 @@ console.log(a + b); // Data privacy
 })();
 
 console.log(c);
+*/
+
+// Strings
+
+let firstName = "John";
+let lastName = "Smith";
+
+const yearOfBirth = 1990;
+
+function calcAge(yearOfBirth){
+    return 2020 - yearOfBirth;
+}
+
+// ES5
+console.log("This is " + firstName + " " + lastName + " .He was born in " + yearOfBirth + ". He is " + calcAge(yearOfBirth));
+
+// ES6
+console.log(`This is ${firstName} ${lastName}.He was born in ${yearOfBirth}. He is ${calcAge(yearOfBirth)}`);
+
+const n = `${firstName} ${lastName}`;
+
+console.log(n.startsWith('J'));
+console.log(n.startsWith('j')); // Not the same
+
+console.log(n.endsWith('h'));
+
+console.log(n.includes(' '));
+
+console.log(`${firstName} `.repeat(5));
+
