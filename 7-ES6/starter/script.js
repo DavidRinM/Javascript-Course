@@ -327,7 +327,7 @@ function isFullAge6(...years){ //years array
     years.forEach(current => console.log((2016 - current) >= 18));
 }
 
-isFullAge6(1990,1999,1965, 2016, 1987);*/
+isFullAge6(1990,1999,1965, 2016, 1987);
 
 // Rest Parameters -> Multiple arguments into one array
 
@@ -350,3 +350,35 @@ function isFullAge6(limit, ...years){ //years array
 }
 
 isFullAge6(16, 1990,1999,1965, 2016, 1987); //16 is limit within the function
+
+*/
+
+
+// Default Parameters
+
+// ES5
+function SmithPerson5(firstName, yearOfBirth, lastName, nationality){
+    
+    lastName === undefined ? lastName ="Smith" : lastName = lastName; //If theres not argument, by default its smith
+    nationality ===undefined ? nationality = "American" : nationality = nationality;
+
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.yearOfBirth = yearOfBirth;
+    this.nationality = nationality;
+}
+
+
+
+// ES6
+
+function SmithPerson6(firstName, yearOfBirth, lastName = "Smith", nationality = "American"){
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.yearOfBirth = yearOfBirth;
+    this.nationality = nationality;
+}
+
+var john = new SmithPerson6("John", 1990);
+var emily = new SmithPerson6("Emily", 1983, "Diaz", "Spanish");
+
