@@ -351,7 +351,6 @@ function isFullAge6(limit, ...years){ //years array
 
 isFullAge6(16, 1990,1999,1965, 2016, 1987); //16 is limit within the function
 
-*/
 
 
 // Default Parameters
@@ -381,4 +380,48 @@ function SmithPerson6(firstName, yearOfBirth, lastName = "Smith", nationality = 
 
 var john = new SmithPerson6("John", 1990);
 var emily = new SmithPerson6("Emily", 1983, "Diaz", "Spanish");
+*/
+
+
+
+// Maps in ES6
+
+const question = new Map();
+
+question.set("question", "What is the official name of the latest major JavaScript version?");//First key of the new map
+question.set(1, "ES5"); //1 for the first answer
+question.set(2, "ES6");
+question.set(3, "ES2015");
+question.set(4, "ES7");
+question.set("correct", 3); //correct answer
+question.set(true, "correct answer"); // If answer is true
+question.set(false, "wrong, please try again");
+
+console.log(question.get("question"));
+console.log(question.size);
+
+
+if(question.has(4)){
+    //question.delete(4);
+    console.log("Answer 4 is here");
+}
+
+//question.clear(); delestes every key
+
+question.forEach((value, key) => { //current, index, array
+    console.log(`This is key ${key}, and its set to ${value}`);
+});
+
+for (let [key, value] of question.entries()){ //All entries of map using destructuring
+    //console.log(`This is key ${key}, and its set to ${value}`);
+    if(typeof(key) === "number"){
+        console.log(`Answer ${key}: ${value}`);
+    }
+}
+
+const ans = parseInt(prompt("Write the correct answer"));
+
+
+//question.get(ans === question.get("answer"));
+console.log(question.get(ans === question.get("correct")));
 
