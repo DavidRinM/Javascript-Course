@@ -214,7 +214,7 @@ function calcAgeRetirement(year){
 const [age2, retirement] = calcAgeRetirement(1990);
 console.log(age2);
 console.log(retirement);
-*/
+
 
 // Arrays
 const boxes = document.querySelectorAll(".box"); //node list
@@ -267,3 +267,40 @@ console.log(ages[fullAge.indexOf(true)]);
 console.log(ages.findIndex((current) => current >=18)); //returns index when expression its true
 
 console.log(ages.find(current => current >= 18)); // returns value
+*/
+
+
+// Spread Operator
+function addFourAges(a, b, c, d){
+    return a + b + c + d;
+}
+
+var sum1 = addFourAges(18, 30, 12, 21);
+console.log(sum1);
+
+//Pass an array into a function
+
+// ES5
+var ages = [18, 30, 12, 21];
+var sum2 = addFourAges.apply(null, ages);
+console.log(sum2);
+
+
+// ES6
+let sum3 = addFourAges(...ages);
+console.log(sum3);
+
+const familySmith = ["John", "Jane", "Mark"];
+const familyMiller = ["Mary", "Bob", "Ann"];
+
+const bigFamily = [...familySmith, "Lily", ...familyMiller]; //Concatenate arrays
+console.log(bigFamily);
+
+
+// Using with node List (What queryselectorall returns)
+const header = document.querySelector("h1"); //element name
+const boxes = document.querySelectorAll(".box");
+
+const all = [header, ...boxes]; //Node list
+
+Array.from(all).forEach(current => current.style.color = "red"); //returns an array
