@@ -267,7 +267,7 @@ console.log(ages[fullAge.indexOf(true)]);
 console.log(ages.findIndex((current) => current >=18)); //returns index when expression its true
 
 console.log(ages.find(current => current >= 18)); // returns value
-*/
+
 
 
 // Spread Operator
@@ -304,3 +304,49 @@ const boxes = document.querySelectorAll(".box");
 const all = [header, ...boxes]; //Node list
 
 Array.from(all).forEach(current => current.style.color = "red"); //returns an array
+*/
+
+/*
+// Rest Parameters -> Multiple arguments into one array
+
+// ES5
+function isFullAge5(){ 
+    //console.log(arguments);
+    var argsArr = Array.prototype.slice.call(arguments);
+
+    argsArr.forEach(function(current){
+        console.log((2016 - current) >=18);
+    });
+}
+
+//isFullAge5(1990,1999,1965, 2016, 1987);
+
+
+// ES6
+function isFullAge6(...years){ //years array
+    years.forEach(current => console.log((2016 - current) >= 18));
+}
+
+isFullAge6(1990,1999,1965, 2016, 1987);*/
+
+// Rest Parameters -> Multiple arguments into one array
+
+// ES5
+function isFullAge5(limit){ //first argument is limit
+    //console.log(arguments);
+    var argsArr = Array.prototype.slice.call(arguments, 1); //slice starts at position 1
+
+    argsArr.forEach(function(current){
+        console.log((2016 - current) >= limit); //21 is te limit number
+    });
+}
+
+isFullAge5(21, 1990,1999,1965, 2016, 1987);
+
+
+// ES6
+function isFullAge6(limit, ...years){ //years array
+    years.forEach(current => console.log((2016 - current) >= limit));
+}
+
+isFullAge6(16, 1990,1999,1965, 2016, 1987); //16 is limit within the function
