@@ -380,7 +380,6 @@ function SmithPerson6(firstName, yearOfBirth, lastName = "Smith", nationality = 
 
 var john = new SmithPerson6("John", 1990);
 var emily = new SmithPerson6("Emily", 1983, "Diaz", "Spanish");
-*/
 
 
 
@@ -424,4 +423,45 @@ const ans = parseInt(prompt("Write the correct answer"));
 
 //question.get(ans === question.get("answer"));
 console.log(question.get(ans === question.get("correct")));
+*/
 
+
+//  Classes
+
+// ES5 code
+var Person5 = function(name, yearOfBirth, job){
+    this.name = name;
+    this.yearOfBirth = yearOfBirth;
+    this.job = job;
+};
+
+Person5.prototype.calculateAge = function(){
+    var age = new Date().getFullYear() - this.yearOfBirth;
+    console.log(age);
+}
+
+var john5 = new Person5("John", 1990, "Teacher");
+
+
+// ES6 code
+class Person6 {
+    
+    constructor (name, yearOfBirth, job){
+        this.name = name;
+        this.yearOfBirth = yearOfBirth;
+        this.job = job;
+    }
+
+    calculateAge(){
+        var age = new Date().getFullYear() - this.yearOfBirth;
+        console.log(age);
+    }
+
+    static greeting(){
+        console.log("Hey there");
+    }
+}
+
+const john6 = new Person6("Jhon", 1990, "Teacher");
+
+Person6.greeting();
