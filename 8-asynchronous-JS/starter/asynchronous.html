@@ -68,22 +68,37 @@
             });
         };
 
-        getIDs
-        .then((IDs) => { //if promise succesful, run
-                 //IDs is the result of the succesful promise (Id´s array)
+        // getIDs
+        // .then((IDs) => { //if promise succesful, run
+        //          //IDs is the result of the succesful promise (Id´s array)
+        //     console.log(IDs);
+        //     return getRecipe(IDs[2]);
+        // })
+        // .then(recipe => { //then method for getRecipe function (Promise)
+        //     console.log(recipe);
+        //     return getRelated("Jonas");
+        // })
+        // .then(recipe => {
+        //     console.log(recipe);
+        // })
+        // .catch(error => { //catch for getIDs
+        //     console.log("Error");
+        // });
+
+        async function getRecipesAW(){ //keeps running in the background
+            const IDs = await getIDs; //waits till getIDs gets resolved
             console.log(IDs);
-            return getRecipe(IDs[2]);
-        })
-        .then(recipe => { //then method for getRecipe function (Promise)
+
+            const recipe = await getRecipe(IDs[2]);
             console.log(recipe);
-            return getRelated("Jonas");
-        })
-        .then(recipe => {
-            console.log(recipe);
-        })
-        .catch(error => { //catch for getIDs
-            console.log("Error");
-        });
+
+            const relatedRecipe = await getRelated("Jonas");
+            console.log(relatedRecipe);
+
+            return recipe;
+        }
+
+        getRecipesAW().then(recipe => console.log(`${recipe} is the best ever!!!`));
 
     </script>
 </body>
