@@ -22,7 +22,7 @@
             console.log("The end");
         }
 
-        first(); */
+        first(); 
 
         function getRecipe(){
             setTimeout(() => {
@@ -42,7 +42,48 @@
             }, 1500);
         }
 
-        getRecipe();
+        getRecipe();*/
+
+        const getIDs = new Promise((resolve, reject) => { //if promise was succesful (resolve) or not
+            setTimeout(() => {
+                resolve([523, 883, 432, 974]); //if promise was succesful we return the Id´s array
+            },1500);
+        });
+
+        const getRecipe = recipeID => {
+            return new Promise((resolve, reject) => {
+                setTimeout(ID => {
+                    const recipe  = {title: "Fresh Tomato Pasta", publisher: "Jonas"};
+                    resolve(`${ID}: ${recipe.title}`);
+                }, 1500, recipeID); //recipeID is ID within setTimeout
+            });
+        };
+
+        const getRelated = publisher => {
+            return new Promise((resolve, reject) =>{
+                setTimeout(pub => {
+                    const recipe = {title: "Italian Pizza", publisher: "Jonas"};
+                    resolve(`${pub}: ${recipe.title}`); //Italian Pizza
+                },1500, publisher);
+            });
+        };
+
+        getIDs
+        .then((IDs) => { //if promise succesful, run
+                 //IDs is the result of the succesful promise (Id´s array)
+            console.log(IDs);
+            return getRecipe(IDs[2]);
+        })
+        .then(recipe => { //then method for getRecipe function (Promise)
+            console.log(recipe);
+            return getRelated("Jonas");
+        })
+        .then(recipe => {
+            console.log(recipe);
+        })
+        .catch(error => { //catch for getIDs
+            console.log("Error");
+        });
 
     </script>
 </body>
