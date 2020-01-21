@@ -5,6 +5,7 @@
 // console.log(`Ùsing imported functions ${searchView.add(searchView.ID, 2)} and ${searchView.multiply(3,5)}. ${str}`);
 
 import Search from "./models/Search"
+import Recipe from "./models/Recipe"
 import * as searchView from "./views/searchView"
 import {elements, renderLoader, clearLoader} from "./views/base"
 /** Global State of the App
@@ -15,6 +16,7 @@ import {elements, renderLoader, clearLoader} from "./views/base"
 */
 const state = {};
 
+// ------- SEARCH CONTROLLER
 const controlSearch = async () => {
     // 1- Get query from view
     const query = searchView.getInput();
@@ -51,3 +53,9 @@ elements.searchResPages.addEventListener("click", event => {
         searchView.renderResults(state.search.result, goToPage);
     }
 });
+
+
+// ------- RECIPE CONTROLLER
+const r = new Recipe(47746);
+r.getRecipe();
+console.log(r);
