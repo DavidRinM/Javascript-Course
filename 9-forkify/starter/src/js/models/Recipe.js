@@ -15,7 +15,7 @@ export default class Recipe {
             this.ingredients = res.data.recipe.ingredients;
         }
         catch(error){
-            alert(error);
+            alert("Check getRecipe");  
         }
     }
 
@@ -33,7 +33,10 @@ export default class Recipe {
     parseIngredients (){
         const unitsLong = ["tablespoons", "tablespoon", "ounces", "ounce", "teaspoons", "teaspoon", "cups", "pounds"];
         const unitsShort = ["tbsp", "tbsp", "oz", "oz", "tsp", "tsp", "cup", "pound"];
+        const units = [...unitsShort, "kg", "gr"];
+        
         const newIngredients = this.ingredients.map(el => {
+            
             // !)Units should be the same
             let ingredient = el.toLowerCase();
             unitsLong.forEach((current, i) => {
@@ -46,7 +49,7 @@ export default class Recipe {
 
             // 3)Parse ingredients into count, unit and ingredient
             const arrIngredient = ingredient.split(" ");
-            const unitIndex = arrIngredient.findIndex(el2 => unitsShort.includes(el2)); //Checks if units exists
+            const unitIndex = arrIngredient.findIndex(el2 => units.includes(el2)); //Checks if units exists
 
             let objIng;
 
@@ -75,7 +78,7 @@ export default class Recipe {
                 //No unit but 1st element is a number 1 bread, 4 eggs, etc
                 objIng = {
                     count: parseInt(arrIngredient[0], 10),
-                    unit: "",
+                    unit: '',
                     ingredient: arrIngredient.slice(1).join(" ") //Entire array, except 1st element
                 }
             }
