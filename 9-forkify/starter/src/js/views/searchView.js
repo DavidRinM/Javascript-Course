@@ -98,3 +98,13 @@ export const renderResults = (recipes, page = 1, resultsPerPage = 10) => {
     //render pagination buttons
     renderButtons(page, recipes.length, resultsPerPage);
 }
+
+
+export const highlihtedSelected = id => {
+    const resultsArr = Array.from(document.querySelectorAll(".results__link"));
+    resultsArr.forEach(el => { //removes highlight from previously selected items
+        el.classList.remove("results__link--active");
+    });
+
+    document.querySelector(`a[href="#${id}"]`).classList.add("results__link--active");
+};
