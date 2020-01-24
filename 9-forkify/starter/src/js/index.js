@@ -52,20 +52,6 @@ const controlSearch = async () => {
     }
 }
 
-elements.searchForm.addEventListener("submit", event => {
-    event.preventDefault();
-    controlSearch();
-});
-
-elements.searchResPages.addEventListener("click", event => {
-    const btn = event.target.closest(".btn-inline"); //closest element to this class
-    if(btn){
-        const goToPage =parseInt(btn.dataset.goto, 10); //base 10
-        searchView.clearResults();
-        searchView.renderResults(state.search.result, goToPage);
-    }
-});
-
 
 // ------- RECIPE CONTROLLER
 const controlRecipe = async () => {
@@ -107,35 +93,23 @@ const controlRecipe = async () => {
     }
 }
 
-// window.addEventListener("hashchange", controlRecipe);
-// window.addEventListener("load", controlRecipe);
-["hashchange", "load"].forEach(event => window.addEventListener(event, controlRecipe));
 
 
-// Handling Recipe Buttons
-elements.recipe.addEventListener("click", e => {
-    if(e.target.matches(".btn-decrease, .btn-decrease *")) {
-        // Decrease button in slicked
-        if(state.recipe.servings > 1){
-            state.recipe.updateServings("dec");
-            recipeView.updateServingsIngredients(state.recipe);
-        }
-    }
-    else if(e.target.matches(".btn-increase, .btn-increase *")) {
-        // Decrease button in slicked
-        state.recipe.updateServings("inc");
-        recipeView.updateServingsIngredients(state.recipe);
-    }
-    else if(e.target.matches(".recipe__btn--add, .recipe__btn--add *")){
-        //Add Ingredients to Shopping List
-        controlList();
-    }
-    else if(e.target.matches(".recipe__love, .recipe__love *")){
-        //Like Controller
-        controlLike();
-    }
-    console.log(state.recipe);
+
+elements.searchForm.addEventListener("submit", event => {
+    event.preventDefault();
+    controlSearch();
 });
+
+elements.searchResPages.addEventListener("click", event => {
+    const btn = event.target.closest(".btn-inline"); //closest element to this class
+    if(btn){
+        const goToPage =parseInt(btn.dataset.goto, 10); //base 10
+        searchView.clearResults();
+        searchView.renderResults(state.search.result, goToPage);
+    }
+});
+
 
 // LIST CONTROLLER
 const controlList = () => {
@@ -148,30 +122,6 @@ const controlList = () => {
         listView.renderItem(item); //Render in the view
     });
 }
-
-//Handle delete and update List Item events
-elements.shopping.addEventListener("click", e => {
-    const id = e.target.closest(".shopping__item").dataset.itemid;
-
-    //Handle delete button
-    if(e.target.matches(".shopping__delete, .shopping__delete *")){
-        //Delete from state
-        state.list.deleteItem(id);
-
-        // Delete from UI
-        listView.deleteItem(id);
-
-    }//Handle Count update
-    else if(e.target.matches(".shopping__count-value")){
-        const val =parseFloat(e.target.value,10)
-        state.list.updateCount(id, val);
-    }
-});
-
-
-// TESTING
-state.likes = new Likes();
-likesView.toggleLikeMenu(state.likes.getNumberLikes());
 
 //LIKES CONTROLLER
 const controlLike = () => {
@@ -207,3 +157,71 @@ const controlLike = () => {
 
     likesView.toggleLikeMenu(state.likes.getNumberLikes());
 }
+
+// window.addEventListener("hashchange", controlRecipe);
+// window.addEventListener("load", controlRecipe);
+["hashchange", "load"].forEach(event => window.addEventListener(event, controlRecipe));
+
+
+// Handling Recipe Buttons
+elements.recipe.addEventListener("click", e => {
+    if(e.target.matches(".btn-decrease, .btn-decrease *")) {
+        // Decrease button in slicked
+        if(state.recipe.servings > 1){
+            state.recipe.updateServings("dec");
+            recipeView.updateServingsIngredients(state.recipe);
+        }
+    }
+    else if(e.target.matches(".btn-increase, .btn-increase *")) {
+        // Decrease button in slicked
+        state.recipe.updateServings("inc");
+        recipeView.updateServingsIngredients(state.recipe);
+    }
+    else if(e.target.matches(".recipe__btn--add, .recipe__btn--add *")){
+        //Add Ingredients to Shopping List
+        controlList();
+    }
+    else if(e.target.matches(".recipe__love, .recipe__love *")){
+        //Like Controller
+        controlLike();
+    }
+    console.log(state.recipe);
+});
+
+
+
+//Handle delete and update List Item events
+elements.shopping.addEventListener("click", e => {
+    const id = e.target.closest(".shopping__item").dataset.itemid;
+
+    //Handle delete button
+    if(e.target.matches(".shopping__delete, .shopping__delete *")){
+        //Delete from state
+        state.list.deleteItem(id);
+
+        // Delete from UI
+        listView.deleteItem(id);
+
+    }//Handle Count update
+    else if(e.target.matches(".shopping__count-value")){
+        const val =parseFloat(e.target.value,10)
+        state.list.updateCount(id, val);
+    }
+});
+
+
+
+// Restore Liked Recipes on page load
+window.addEventListener("load", () => {
+    state.likes = new Likes();
+
+    //Restore Likes
+    state.likes.readStorage();
+
+    //Toggle Like Menu btn
+    likesView.toggleLikeMenu(state.likes.getNumberLikes());
+
+    //Render the Existing Likes
+    state.likes.likes.forEach(like => likesView.renderLike(like));
+
+});
