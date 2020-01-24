@@ -20,7 +20,6 @@ import {elements, renderLoader, clearLoader} from "./views/base"
  * -Liked Recipes
 */
 const state = {};
-window.state = state;
 
 // ------- SEARCH CONTROLLER
 const controlSearch = async () => {
@@ -185,7 +184,6 @@ elements.recipe.addEventListener("click", e => {
         //Like Controller
         controlLike();
     }
-    console.log(state.recipe);
 });
 
 

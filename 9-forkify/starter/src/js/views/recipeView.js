@@ -14,6 +14,40 @@ const createIngredient = ingredient => `
     </li>
 `;
 
+const formatCount = count => { //Recieves number
+    if(count){
+        // count = 2.5 -> 5/2 -> 2 1/2
+        // count = 0.5 -> 1/2
+        const newCount = Math.round(count * 10000) / 10000; //Four decimals
+        const [int, dec] = newCount.toString().split(".").map(el => parseInt(el, 10));//split the number into integers and decimals
+        
+        if(!dec) return newCount;//No decimal. Ex 4.0
+        
+        if(int === 0){
+            const fracc = new Fraction(newCount); //creates numerator, denomerator
+            return `${fracc.numerator}/${fracc.denominator}`;
+        }
+        else{ //Integer >=1
+            const fracc = new Fraction(newCount - int);
+            return `${int} ${fracc.numerator}/${fracc.denominator}`;
+        }
+    }
+    return "?";
+}
+
+
+export const updateServingsIngredients = recipe => {
+    //Update Servings
+    document.querySelector(".recipe__info-data--people").textContent = recipe.servings;
+
+    //Update Ingredients
+    const countElements = Array.from(document.querySelectorAll(".recipe__count"));
+    countElements.forEach((el, index) => {
+        el.textContent = formatCount(recipe.ingredients[index].count);
+    });
+};
+
+
 export const renderRecipe = (recipe, isLiked) => {
     const markup = `
     <figure class="recipe__fig">
@@ -93,33 +127,5 @@ export const clearRecipe = () => {
     elements.recipe.innerHTML = "";
 };
 
-const formatCount = count => { //Recieves number
-    if(count){
-        // count = 2.5 -> 5/2 -> 2 1/2
-        // count = 0.5 -> 1/2
-        const [int, dec] = count.toString().split(".").map(el => parseInt(el, 10));//split the number into integers and decimals
-        
-        if(!dec) return count;//No decimal. Ex 4.0
-        
-        if(int === 0){
-            const fracc = new Fraction(count); //creates numerator, denomerator
-            return `${fracc.numerator}/${fracc.denominator}`;
-        }
-        else{ //Integer >=1
-            const fracc = new Fraction(count - int);
-            return `${int} ${fracc.numerator}/${fracc.denominator}`;
-        }
-    }
-    return "?";
-}
 
-export const updateServingsIngredients = recipe => {
-    //Update Servings
-    document.querySelector(".recipe__info-data--people").textContent = recipe.servings;
 
-    //Update Ingredients
-    const countElements = Array.from(document.querySelectorAll(".recipe__count"));
-    countElements.forEach((el, index) => {
-        el.textContent = formatCount(recipe.ingredients[index].count);
-    });
-};
